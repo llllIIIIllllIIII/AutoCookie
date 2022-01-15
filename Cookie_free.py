@@ -1,4 +1,4 @@
-from platform import system
+import sys
 import datetime
 from ppadb.client import Client
 import cv2
@@ -15,17 +15,18 @@ from save import save
 #
 # C:\Program Files\Tesseract-OCR\tesseract.exe
 # X:\Tesseract-OCR\tesseract.exe
-
-
-
-path = "r'X:\Tesseract-OCR\tesseract.exe'"
-pytesseract.pytesseract.tesseract_cmd = r"X:\Tesseract-OCR\tesseract.exe"
-adb = Client(host="127.0.0.1", port=5037)
-devices = adb.devices()
-device = devices[0]
-pause = False
-db = save()
-
+try:
+    limit_time = datetime.date(2022,1,16)
+    path = "r'X:\Tesseract-OCR\tesseract.exe'"
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+    adb = Client(host="127.0.0.1", port=5037)
+    devices = adb.devices()
+    device = devices[0]
+    pause = False
+    db = save()
+except Exception as e:
+    print("裝置連線發生狀況 可能的解決方法可參照DC群內使用前注意事項")
+    os.system(pause)
 def main():
     # id_img = screenshot()
     # idimg = id_img[720:765,385:605]
@@ -44,7 +45,7 @@ def main():
             global pause
             
             while pause == False:
-                
+                check_time()
                 # cls()
                 time.sleep(0.2)
                 img = screenshot()
@@ -95,6 +96,7 @@ def Mpause():
     global pause
     while True:
         keyboard.wait("scroll lock")
+        print('scroll lock pressed')
         pause = True
 
 
@@ -160,6 +162,10 @@ def adjust():
     print("請按F12繼續使用腳本")       
     
 
+def check_time():
+    global limit_time
+    if datetime.date.today() >= limit_time:
+        sys.exit("腳本已過期")
 
 if __name__ == "__main__":
     main()

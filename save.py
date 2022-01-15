@@ -4,13 +4,13 @@ import pandas as pd
 
 class save:
     resource_list = [
-            ('RollCakeWood',1000,True),
-            ('Jellybean',1000,True),
-            ('SugarCube',1000,True),
-            ('BiscuitFlour',1000,True),
-            ('Jellyberry',1000,True),
-            ('Milk',500,True),
-            ('CottonCandyWool',300,True),
+            ('RollCakeWood',300,True),
+            ('Jellybean',300,True),
+            ('SugarCube',300,True),
+            ('BiscuitFlour',300,True),
+            ('Jellyberry',300,True),
+            ('Milk',200,True),
+            ('CottonCandyWool',200,True),
             ('RobustAxe',100,False),
             ('TemperedPickaxe',60,False),
             ('CandySaw',60,False),
